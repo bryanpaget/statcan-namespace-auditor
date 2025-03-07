@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: namespace-cleanup-role
+  namespace: kube-system
+rules:
+  - apiGroups: [""]
+    resources: ["namespaces", "configmaps"]
+    verbs: ["get", "list", "watch", "update", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: namespace-cleanup-rolebinding
+  namespace: kube-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: namespace-cleanup-role
+subjects:
+  - kind: ServiceAccount
+    name: namespace-cleanup-sa
+    namespace: kube-system

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: namespace-cleanup-config
+  namespace: kube-system
+data:
+  emailDomain: "statcan.gc.ca"
+  gracePeriodDays: "30"

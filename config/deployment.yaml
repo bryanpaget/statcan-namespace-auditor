@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: namespace-cleanup-controller
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: namespace-cleanup
+  template:
+    metadata:
+      labels:
+        app: namespace-cleanup
+    spec:
+      serviceAccountName: namespace-cleanup-sa
+      containers:
+        - name: namespace-cleanup
+          image: your-repo/namespace-cleanup:latest
+          env:
+            - name: CONFIG_NAME
+              value: "namespace-cleanup-config"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: namespace-cleanup-config

@@ -81,6 +81,7 @@ Further Resources
 Proposed Project File Structure
 =================================
 
+```
 statcan-namespace-auditor/
 ├── README.txt                  # Project overview, setup instructions, and usage guidelines
 ├── go.mod                      # Go module file
@@ -95,3 +96,4 @@ statcan-namespace-auditor/
 │   ├── rbac/                  # RBAC roles and bindings needed for the controller
 │   └── manager/               # Deployment manifests for the controller manager (e.g., manager.yaml)
 └── pkg/                        # (Optional) Additional libraries or utility functions
+```
